@@ -10,9 +10,12 @@ const CheckMatrix = (function() {
         this.container = document.createElement("div");
         const style = this.container.style;
         style.margin = "0";
+        style.padding = "1.5px";
         style.display = "inline-block";
         style.lineHeight = "0";
         style.fontSize = "0";
+        style.backgroundColor = "#ccc";
+        style.border = "1px solid #aaa";
         parentElement.appendChild(this.container);
 
         this.append();
@@ -34,7 +37,7 @@ const CheckMatrix = (function() {
             for (let x = 0; x < this.width; x++) {
                 const box = document.createElement("input");
                 box.setAttribute("type", "checkbox");
-                box.style.margin = "0";
+                box.style.margin = "0.5px";
                 box.style.display = "inline-block";
                 container.appendChild(box);
                 this.checkboxes[y][x] = box;
@@ -48,12 +51,11 @@ const CheckMatrix = (function() {
     
     proto.getData = function() {
         const data = [];
-        
-        let i = 0;
+
         for (let row = 0; row < this.checkboxes.length; row++) {
+            data[row] = [];
             for (let column = 0; column < this.checkboxes[row].length; column++) {
-                data[i] = (this.checkboxes[row][column].checked) ? 1 : 0;
-                ++i;
+                data[row][column] = (this.checkboxes[row][column].checked) ? 1 : 0;
             }
         }
         
